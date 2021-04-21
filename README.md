@@ -24,8 +24,9 @@
 C++: an object-oriented programming language 
 Valgrind: an instrumentation framework for building dynamic analysis tools
 CMake: a software for build automation, testing, packaging, and installation
- > * Input: User selection/answers, Reference Test Documetns
+ > * Input: User selection/answers, Reference Test Documents
  > * Output: Quiz Questions
+ 
  > Composite: 
 We picked this pattern because we felt that a quiz allows us to nicely and cleanly divide the project into separate components. For example, the quiz can be generated about one specific topic or multiple topics; each topic can be its own class, or component, which will have a list of questions specific to it. A problem we could potentially face when implementing our project is failing to access the uploaded files when prompted by the user for which quiz they want to take and questions. An additional composite design pattern problem that may arise is that the user’s input is incomprehensible forcing either an error or the program marking a correct answer as incorrect.
 
