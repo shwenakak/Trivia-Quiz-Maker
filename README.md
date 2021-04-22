@@ -24,7 +24,7 @@
  > * C++: an object-oriented programming language 
  > * Valgrind: an instrumentation framework for building dynamic analysis tools
  > * CMake: a software for build automation, testing, packaging, and installation
- > * Input: User selection/answers, Reference Test Documents
+ > * Input: User selection/answers, Reference Text Documents
  > * Output: Quiz Questions
  
 > ### Composite: 
