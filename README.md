@@ -21,9 +21,9 @@
  > The trivia quiz will allow the user to play a trivia game. The user will be able to choose between a genre-specific quiz or a generalized quiz. Based on their selection the quiz will contain multiple-choice, true/false, or fill-in-the-blank questions.
  > * Games are a fun way to destress and relax, especially in these current times, learning how to relax and take care of yourself is equally as important as staying on top of your stuff.
  > * We will be using C++, Valgrind, and CMake.
-C++: an object-oriented programming language 
-Valgrind: an instrumentation framework for building dynamic analysis tools
-CMake: a software for build automation, testing, packaging, and installation
+ > ** C++: an object-oriented programming language 
+ > ** Valgrind: an instrumentation framework for building dynamic analysis tools
+ > ** CMake: a software for build automation, testing, packaging, and installation
  > * Input: User selection/answers, Reference Test Documents
  > * Output: Quiz Questions
  
