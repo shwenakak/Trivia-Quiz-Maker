@@ -11,14 +11,17 @@ using namespace std;
 class Quiz {
 
 	private:
-		Questions* q; // reference to Questions class; composite component
+		string topic;
+		string type;
+		Questions* question = nullptr; // reference to Questions class; composite component
 
 	public:
 		~Quiz();
+		void SetType(string); // param is what type of questions user wants
 		// TODO
-		string PickTopic(); // which topic will user choose: Music, Sports, or Science
+		void PickTopic(); // which topic will user choose: Music, Sports, or Science
 		// TODO
-		string QType(); // which questions does user want: T/F, MC, FillinBlank
+		void QType(); // which questions does user want: T/F, MC, FillinBlank
 		// TODO
 		bool RunGame(); // this will play the game
 };
