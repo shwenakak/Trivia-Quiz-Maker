@@ -14,6 +14,7 @@ class Quiz {
 		Questions* q; // reference to Questions class; composite component
 
 	public:
+		~Quiz();
 		// TODO
 		string PickTopic(); // which topic will user choose: Music, Sports, or Science
 		// TODO
