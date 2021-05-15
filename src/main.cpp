@@ -1,7 +1,4 @@
 #include "quiz.cpp"
-#include "../header/questions.hpp"
-
-#include "../header/fill.hpp"
 
 #include <iostream>
 
