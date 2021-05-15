@@ -18,6 +18,8 @@ void Quiz::LoadQuestions(string t) {
 	inFile.open("../notes/" + t + ".txt");
 	if (inFile.is_open())
 		cout << "SPORTS QUESTIONS OPENED" << endl;
+	else 
+		cout << "FILE NOT OPEN" << endl;
 }
 
 void Quiz::SetType(string q) {
