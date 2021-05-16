@@ -16,9 +16,8 @@ class Quiz {
 		string type;
 		Questions* question = nullptr; // reference to Questions class; composite component
 
-		vector<string> MusicQ;
-		vector<string> ScienceQ;
-		vector<string> SportsQ;
+		// holds all the questions for the current game
+		vector<string> game_questions;
 
 	public:
 		~Quiz();
