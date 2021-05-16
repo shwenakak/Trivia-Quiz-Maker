@@ -22,7 +22,7 @@ class Quiz {
 	public:
 		~Quiz();
 		void LoadQuestions(string); // fill vectors with questions according to user topic
-		void SetType(string); // param is what type of questions user wants
+		bool SetType(string); // param is what type of questions user wants
 		void PickTopic(); // which topic will user choose: Music, Sports, or Science
 		void QType(); // which questions does user want: T/F, MC, FillinBlank
 		// TODO
