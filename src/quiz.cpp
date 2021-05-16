@@ -21,46 +21,39 @@ void Quiz::LoadQuestions(string t) {
 	
 	if (!inFile.is_open())
 		cout << "FILE NOT OPEN" << endl;
+	else
+		cout << "FILE OPENED" << endl;
 
 	// read from file and add to vector of questions
 	while(!inFile.eof()) {
 		inFile >> line;
-		if (line == type) {
+		if (line == (this->type + ":")) { // added the ':' bc that's how it's formatted in the notes/sports.txt file
 			getline(inFile, line);
 			game_questions.push_back(line);
-			cout << line << endl;
+			//cout << line << endl;
 		}
-		//else if (line == "Fill:") {
-		//	getline(inFile, line);	
-		//	game_questions.push_back(line);
-		//	cout << line << endl;
-	//	}
-	//	else if (line == "T/F:") {
-	//		getline(inFile, line);
-	//		game_questions.push_back(line);
-	//		cout << line << endl;
-	//	}
 	}
 
 	inFile.close();
 }
 
-void Quiz::SetType(string q) {
+bool Quiz::SetType(string q) {
 	delete question;
 	
-	// params: beginnigng of word, end of word, beginning of word we want to store result inm what we want to do	
-	transform(q.begin(), q.end(), q.begin(), ::tolower);	
-
-//	if (tolower(q) == "t/f" || tolower(q) == "tf")
-//		question = new TF(topic); // new class
-//	else if (tolower(q) == "mc")
-//		question = new MC(topic); // new class
-	if (q == "fill")
+	if (q == "t/f")
+		//question = new TF(topic); // new class
+		string s = "h"; // will remove when TF class is implemented
+	else if (q == "mc")
+		//question = new MC(topic); // new class
+		string h = "h"; // will remove when MC class is implemented
+	else if (q == "fill")
 		question = new Fill(topic); // new class
 	else {
 		cout << "Please enter a valid choice" << endl;
-		QType(); // call function again to get user input
+		return false;
 	}
+
+	return true;	
 }
 
 void Quiz::PickTopic() {
@@ -76,18 +69,20 @@ void Quiz::PickTopic() {
 		cout << "TOPIC: " << topic << endl;
 		transform(topic.begin(), topic.end(), topic.begin(), ::tolower);		
 	}
-
-//	LoadQuestions(topic); // load questions about user topic
 }
 
 void Quiz::QType() {
-	cout << "What kind of questions would you like?" << endl;
-	cout << "T/F, MC, or Fill" << endl;
-	cin >> type; // store user choice in instance variable as undercase for safety
+	while (!SetType(type)) {
+		cout << "What kind of questions would you like?" << endl;
+		cout << "T/F, MC, or Fill" << endl;
+		cin >> type; // store user choice in instance variable as undercase for safety
 	
-	cout << "QTYPE: " << type << endl;
+		// params: beginnigng of word, end of word, beginning of word we want to store result inm what we want to do	
+		transform(type.begin(), type.end(), type.begin(), ::tolower);	
+		
+		cout << "QTYPE: " << type << endl;
+	}
 	
-	SetType(type);
 	LoadQuestions(topic); // load questions about user topic
 }
 
