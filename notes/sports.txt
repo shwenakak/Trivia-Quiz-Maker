@@ -8,7 +8,7 @@ mc: What team won the first Super Bowl? Green Bay Packers, Dallas Cowboys, New T
 
 fill: LeBron James was drafted by the ___ ___ in 2003. 
 fill: A ___ is when a player grabs a missed shot.
-fill: The ___ ___ have the most championships in NBA history.
+fill: ___ ___ won the NBA MVP in 2018.
 fill: ___ ___ won the NFL MVP in 2015.
 fill: Troy Polamalu played the _____ position.
 fill: The Raiders moved to Las Vegas from ___.
