@@ -22,18 +22,26 @@ void Quiz::LoadQuestions(string t) {
 	if (!inFile.is_open())
 		cout << "FILE NOT OPEN" << endl;
 
-	// read from file
+	// read from file and add to vector of questions
 	while(!inFile.eof()) {
 		inFile >> line;
-		if (line == "MC:") {
+		if (line == type) {
 			getline(inFile, line);
 			game_questions.push_back(line);
+			cout << line << endl;
 		}
+		//else if (line == "Fill:") {
+		//	getline(inFile, line);	
+		//	game_questions.push_back(line);
+		//	cout << line << endl;
+	//	}
+	//	else if (line == "T/F:") {
+	//		getline(inFile, line);
+	//		game_questions.push_back(line);
+	//		cout << line << endl;
+	//	}
 	}
 
-	for (int i = 0; i < game_questions.size(); i++)
-		cout << game_questions.at(i) << endl;
-	
 	inFile.close();
 }
 
@@ -51,7 +59,7 @@ void Quiz::SetType(string q) {
 		question = new Fill(topic); // new class
 	else {
 		cout << "Please enter a valid choice" << endl;
-		this->QType(); // call function again to get user input
+		QType(); // call function again to get user input
 	}
 }
 
@@ -69,7 +77,7 @@ void Quiz::PickTopic() {
 		transform(topic.begin(), topic.end(), topic.begin(), ::tolower);		
 	}
 
-	LoadQuestions(topic); // load questions about user topic
+//	LoadQuestions(topic); // load questions about user topic
 }
 
 void Quiz::QType() {
@@ -79,7 +87,8 @@ void Quiz::QType() {
 	
 	cout << "QTYPE: " << type << endl;
 	
-	this->SetType(type);
+	SetType(type);
+	LoadQuestions(topic); // load questions about user topic
 }
 
 // TODO
