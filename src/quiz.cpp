@@ -3,7 +3,6 @@
 
 #include <string>
 #include <iostream>
-//#include <ctpye.h> // for tolower() function
 #include <algorithm> // need this to manually convert user inputs to lowercase
 #include <fstream>
 
@@ -15,11 +14,27 @@ Quiz::~Quiz() {
 
 void Quiz::LoadQuestions(string t) {
 	ifstream inFile;
-	inFile.open("../notes/" + t + ".txt");
-	if (inFile.is_open())
-		cout << "SPORTS QUESTIONS OPENED" << endl;
-	else 
+	string line;
+
+	// specify path to file from directory where executbale is called
+	inFile.open("notes/" + t + ".txt");
+	
+	if (!inFile.is_open())
 		cout << "FILE NOT OPEN" << endl;
+
+	// read from file
+	while(!inFile.eof()) {
+		inFile >> line;
+		if (line == "MC:") {
+			getline(inFile, line);
+			game_questions.push_back(line);
+		}
+	}
+
+	for (int i = 0; i < game_questions.size(); i++)
+		cout << game_questions.at(i) << endl;
+	
+	inFile.close();
 }
 
 void Quiz::SetType(string q) {
@@ -48,11 +63,13 @@ void Quiz::PickTopic() {
 		cout << "TOPIC: " << topic << endl;
 		cout << "What topic would you like to test you knowledge in?" << endl;
 		cout << "Music, Sports, or Science" << endl;
-		cin >> topic; // store user chouce in instance variable as undercase for safety	
+		//cin >> topic; // store user chouce in instance variable as undercase for safety	
+		topic = "sports";
+		cout << "TOPIC: " << topic << endl;
 		transform(topic.begin(), topic.end(), topic.begin(), ::tolower);		
 	}
 
-	this->LoadQuestions(topic); // load questions about user topic
+	LoadQuestions(topic); // load questions about user topic
 }
 
 void Quiz::QType() {
