@@ -9,7 +9,7 @@ int main() {
 	Quiz q;
 
 	q.PickTopic();
-//	q.QType();
+	q.QType();
 	
 	return 0;
 }
