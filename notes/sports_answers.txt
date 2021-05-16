@@ -1,0 +1,22 @@
+mc: NY Knicks
+mc: Wilt Chamberlain
+mc: LA Lakers
+mc: Cowboys
+mc: 7
+mc: 99
+mc: Green Bay Packers
+
+fill: cleveland cavaliers
+fill: rebound
+fill: james harden
+fill: cam newton
+fill: safety
+fill: oakland
+
+t/f: true
+t/f: false
+t/f: true
+t/f: false
+t/f: false
+t/f: true
+t/f: false
