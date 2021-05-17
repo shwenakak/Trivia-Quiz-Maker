@@ -18,14 +18,19 @@ class Quiz {
 
 		// holds all the questions for the current game
 		vector<string> game_questions;
-
+		// holds all the questions for the current game
+		vector<string> game_answers;
+		
 	public:
 		~Quiz();
 		void LoadQuestions(string); // fill vectors with questions according to user topic
 		bool SetType(string); // param is what type of questions user wants
 		void PickTopic(); // which topic will user choose: Music, Sports, or Science
 		void QType(); // which questions does user want: T/F, MC, FillinBlank
+		
 		// TODO
+		// in this function, we will loop through the two instance var vectors and 
+		// call the functions for each entry in the vector
 		bool RunGame(); // this will play the game
 };
 
