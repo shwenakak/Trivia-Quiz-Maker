@@ -3,8 +3,11 @@
 
 #include <string>
 #include <iostream>
-#include <algorithm> // need this to manually convert user inputs to lowercase
+#include <algorithm> // need this to manually convert user inputs to lowercase and see if elemenet is already in a vector
 #include <fstream>
+// these 2 libs are for rand and srand functions
+#include <time.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -12,42 +15,69 @@ Quiz::~Quiz() {
 	delete question;
 }
 
-void Quiz::LoadQuestions(string t) {
-	ifstream inFile;
-	string line;
+// params: t = topic
+// 	   y = type
+void Quiz::LoadQuestions(string t, string y) {
+	ifstream qFile; // use this to go through questions file and upload questions
+	ifstream aFile; // use this to go through answers file and upload answers
+	string question;
+	string answer;
 
 	// specify path to file from directory where executbale is called
-	inFile.open("notes/" + t + ".txt");
+	qFile.open("notes/" + t + "_" + y + ".txt");
+	aFile.open("notes/" + t + "_answers_" + y + ".txt");
 	
-	if (!inFile.is_open())
-		cout << "FILE NOT OPEN" << endl;
-	else
-		cout << "FILE OPENED" << endl;
+	if (!qFile.is_open()) {
+		cout << "QUESTIONS FILE NOT OPEN" << endl;
+		exit(1);
+	}
+	if (!aFile.is_open()) {
+		cout << "ANSWERS FILE NOT OPEN" << endl;
+		exit(1);
+	}
+	
+	// count total lines and popuylate vectors with all questions and answers
+	int totalLines = 0;
+	while(getline(qFile, question) && getline(aFile, answer)) {
+		totalLines++;
+		all_q.push_back(question);
+		all_a.push_back(answer);
+	}
 
-	// read from file and add to vector of questions
-	while(!inFile.eof()) {
-		inFile >> line;
-		if (line == (this->type + ":")) { // added the ':' bc that's how it's formatted in the notes/sports.txt file
-			getline(inFile, line);
-			game_questions.push_back(line);
-			//cout << line << endl;
+	// populate game questoins and answers with random questions by generating random number between 0 and totalLines
+	srand(time(0));
+	int randNum = 0;
+	while (game_questions.size() != 5 && game_answers.size() != 5) {	
+		randNum = rand() % totalLines;
+		cout << randNum;
+		// add it to vector only if not found
+		if (find(game_questions.begin(), game_questions.end(), all_q.at(randNum)) == game_questions.end()) {
+			game_questions.push_back(all_q.at(randNum));
+			game_answers.push_back(all_a.at(randNum));
 		}
 	}
 
-	inFile.close();
+	cout << "-----------------------------------------------------------------------------" << endl;	
+	for (int i = 0; i < game_questions.size(); i++) {
+		cout << game_questions.at(i) << endl;
+		cout << "\t" << game_answers.at(i) << endl;
+	}
+
+	qFile.close();
+	aFile.close();
 }
 
 bool Quiz::SetType(string q) {
 	delete question;
 	
-	if (q == "t/f")
-		//question = new TF(topic); // new class
+	if (q == "tf")
+		//question = new TF(); // new class
 		string s = "h"; // will remove when TF class is implemented
 	else if (q == "mc")
-		//question = new MC(topic); // new class
+		//question = new MC(); // new class
 		string h = "h"; // will remove when MC class is implemented
 	else if (q == "fill")
-		question = new Fill(topic); // new class
+		question = new Fill(); // new class
 	else {
 		cout << "Please enter a valid choice" << endl;
 		return false;
@@ -66,7 +96,6 @@ void Quiz::PickTopic() {
 		cout << "Music, Sports, or Science" << endl;
 		//cin >> topic; // store user chouce in instance variable as undercase for safety	
 		topic = "sports";
-		cout << "TOPIC: " << topic << endl;
 		transform(topic.begin(), topic.end(), topic.begin(), ::tolower);		
 	}
 }
@@ -74,7 +103,7 @@ void Quiz::PickTopic() {
 void Quiz::QType() {
 	while (!SetType(type)) {
 		cout << "What kind of questions would you like?" << endl;
-		cout << "T/F, MC, or Fill" << endl;
+		cout << "TF, MC, or Fill" << endl;
 		cin >> type; // store user choice in instance variable as undercase for safety
 	
 		// params: beginnigng of word, end of word, beginning of word we want to store result inm what we want to do	
@@ -83,13 +112,24 @@ void Quiz::QType() {
 		cout << "QTYPE: " << type << endl;
 	}
 	
-	LoadQuestions(topic); // load questions about user topic
+	LoadQuestions(topic, type); // load questions about user topic and type
 }
 
 // TODO
 //bool RunGame() {
+//	int score = 0;
 	// display question based on user's topic
-//	question->DisplayQuestion();
+//	for (int i = 0; i < game_questions.size(); i++) {
+//		string user_input = question->DisplayQuestion(game_questions.at(i));
 	
-//	question->CheckAnswer();
+	//	if (question->CheckAnswer(user_input, game_answers.at(i)))
+	//		score++;
+//	}
+//
+//	// if all questions are asked, end the game and clear the vectors 
+//	if (score == 5) {
+//		// end game
+//		game_questions.clear();
+//		game_answers.clear();
+//	}
 //}
