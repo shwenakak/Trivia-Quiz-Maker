@@ -6,15 +6,13 @@
 
 using namespace std;
 
-Fill::Fill(string s) {
-	return;
+string Fill::DisplayQuestion(string s) const {
+	cout << "TODO DISPLAYQ FILL CLASS" << endl;
+	return "hello";
 }
 
-void Fill::DisplayQuestion() const {
-	cout << "TODO DISPLAYQi FILL CLASS" << endl;
-}
-
-bool Fill::CheckAnswer() const {
+bool Fill::CheckAnswer(string i, string s) const {
 	cout << "TODO CHECKANSWER FILL CLASS" << endl;
+	return true;
 }
 
