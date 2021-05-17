@@ -16,6 +16,10 @@ class Quiz {
 		string type;
 		Questions* question = nullptr; // reference to Questions class; composite component
 
+		// holds all questions and answers
+		vector<string> all_q;
+		vector<string> all_a;
+			
 		// holds all the questions for the current game
 		vector<string> game_questions;
 		// holds all the questions for the current game
@@ -23,7 +27,7 @@ class Quiz {
 		
 	public:
 		~Quiz();
-		void LoadQuestions(string); // fill vectors with questions according to user topic
+		void LoadQuestions(string, string); // fill vectors with questions according to user topic and type
 		bool SetType(string); // param is what type of questions user wants
 		void PickTopic(); // which topic will user choose: Music, Sports, or Science
 		void QType(); // which questions does user want: T/F, MC, FillinBlank
