@@ -41,6 +41,9 @@ int main()
 	//displays a random question
 	cout << lines[rand_num] << endl;
 	
+	//Prompts user response
+	cout << "Please enter true or false" <<endl;
+
 	//gets answer 
 	cin  >> uans;
 	cout << uans << endl;
