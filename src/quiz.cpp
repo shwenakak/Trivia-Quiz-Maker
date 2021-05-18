@@ -12,7 +12,12 @@
 using namespace std;
 
 Quiz::~Quiz() {
-	delete question;
+	// clear vector of object pointers
+	while (!game_questions.empty()) {
+		delete game_questions.back();
+		game_questions.pop_back();
+	}
+	game_questions.clear();
 }
 
 // params: t = topic
@@ -22,6 +27,8 @@ void Quiz::LoadQuestions(string t, string y) {
 	ifstream aFile; // use this to go through answers file and upload answers
 	string question;
 	string answer;
+	
+	vector<int> nums; // nums of whcih questions are already in game_question vector
 
 	// specify path to file from directory where executbale is called
 	qFile.open("notes/" + t + "_" + y + ".txt");
@@ -44,46 +51,31 @@ void Quiz::LoadQuestions(string t, string y) {
 		all_a.push_back(answer);
 	}
 
-	// populate game questoins and answers with random questions by generating random number between 0 and totalLines
 	srand(time(0));
 	int randNum = 0;
-	while (game_questions.size() != 5 && game_answers.size() != 5) {	
+	while (nums.size() != 5) {	
 		randNum = rand() % totalLines;
 		cout << randNum;
 		// add it to vector only if not found
-		if (find(game_questions.begin(), game_questions.end(), all_q.at(randNum)) == game_questions.end()) {
-			game_questions.push_back(all_q.at(randNum));
-			game_answers.push_back(all_a.at(randNum));
-		}
+		if (find(nums.begin(), nums.end(), randNum) == nums.end())
+			nums.push_back(randNum);
+	}
+	
+	// populate game questoins and answers with random questions by generating random number between 0 and totalLines
+	srand(time(0));
+	for (int i = 0; i < nums.size(); i++) { 
+		game_questions.push_back(new Fill(all_q.at(nums.at(i)), all_a.at(nums.at(i))));
 	}
 
 	cout << "-----------------------------------------------------------------------------" << endl;	
 	for (int i = 0; i < game_questions.size(); i++) {
-		cout << game_questions.at(i) << endl;
-		cout << "\t" << game_answers.at(i) << endl;
+		cout << "\t" << game_questions.at(i)->DisplayQuestion() << endl;
+		cout << "\t" << game_questions.at(i)->CheckAnswer("a", "b") << endl << endl;
 	}
 
 	qFile.close();
 	aFile.close();
-}
-
-bool Quiz::SetType(string q) {
-	delete question;
-	
-	if (q == "tf")
-		//question = new TF(); // new class
-		string s = "h"; // will remove when TF class is implemented
-	else if (q == "mc")
-		//question = new MC(); // new class
-		string h = "h"; // will remove when MC class is implemented
-	else if (q == "fill")
-		question = new Fill(); // new class
-	else {
-		cout << "Please enter a valid choice" << endl;
-		return false;
-	}
-
-	return true;	
+	nums.clear();
 }
 
 void Quiz::PickTopic() {
@@ -101,7 +93,9 @@ void Quiz::PickTopic() {
 }
 
 void Quiz::QType() {
-	while (!SetType(type)) {
+	while (type != "tf" || type != "mc" || type != "fill") {
+		if (type == "tf" || type == "mc" || type == "fill") 
+			break;
 		cout << "What kind of questions would you like?" << endl;
 		cout << "TF, MC, or Fill" << endl;
 		cin >> type; // store user choice in instance variable as undercase for safety
