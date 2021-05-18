@@ -8,7 +8,7 @@ using namespace std;
 class Questions {
 	public:
 		// the param will be the current question to display
-		virtual string DisplayQuestion(string) const = 0;
+		virtual string DisplayQuestion() const = 0;
 
 		// if user has won the game, return true
 		// the param will be user input and correct answer which we want to check 
