@@ -1,4 +1,5 @@
 #include "../header/game.hpp"
+#include "../header/game_question.hpp"
 #include "fill.cpp"
 
 #include <string>
@@ -11,18 +12,29 @@
 
 using namespace std;
 
-Game::~Game() {
-	// clear vector of object pointers
-	while (!questions.empty()) {
-		delete questions.back();
-		questions.pop_back();
+void Game::SetStrategy(Type* new_strategy) {
+	delete type;
+	type = new_strategy;
+}
+
+void Game::AddQuestion(GameQuestion* gq) {
+	questions.push_back(gq);
+}
+
+// composite pattern
+void Game::PopulateAnswers() {
+	for (int i = 0; i < questions.size(); i++) {
+		answers.push_back(questions.at(i)->GetAnswer()); //will call GetAnswer() on each question object, which will call GetNaswer() on each option object in question object vector of options 
 	}
-	questions.clear();
+}
+
+void Game::print(GameQuestion* gq) {
+	type->Display(gq);
 }
 
 // params: t = topic
 // 	   y = type
-void Game::LoadQuestions(string t, string y) {
+bool Game::LoadQuestions(string t, string y) {
 	ifstream qFile; // use this to go through questions file and upload questions
 	ifstream aFile; // use this to go through answers file and upload answers
 	string question;
@@ -53,7 +65,7 @@ void Game::LoadQuestions(string t, string y) {
 
 	srand(time(0));
 	int randNum = 0;
-	while (nums.size() != 5) {	
+	while (nums.size() != 2) {	
 		randNum = rand() % totalLines;
 		cout << randNum;
 		// add it to vector only if not found
@@ -64,7 +76,7 @@ void Game::LoadQuestions(string t, string y) {
 	// populate game questoins and answers with random questions by generating random number between 0 and totalLines
 	srand(time(0));
 	for (int i = 0; i < nums.size(); i++) { 
-		questions.push_back(new Fill(all_q.at(nums.at(i)), all_a.at(nums.at(i))));
+		questions.push_back(new GameQuestion(all_q.at(nums.at(i)), randNum);
 	}
 
 	cout << "-----------------------------------------------------------------------------" << endl;	
@@ -77,11 +89,13 @@ void Game::LoadQuestions(string t, string y) {
 	nums.clear();
 }
 
-void Game::PickTopic() {
+string Game::PickTopic() {
+	string topic;
 	while (topic != "music" || topic != "sports" || topic != "science") {
 		// weirdly it doesn't break out of loop without this if statement...
-		if (topic == "music" || topic == "sports" || topic == "science")	
-			break;
+		if (topic == "music" || topic == "sports" || topic == "science") {
+			return topic;
+		}
 		cout << "TOPIC: " << topic << endl;
 		cout << "What topic would you like to test you knowledge in?" << endl;
 		cout << "Music, Sports, or Science" << endl;
@@ -90,7 +104,7 @@ void Game::PickTopic() {
 		transform(topic.begin(), topic.end(), topic.begin(), ::tolower);		
 	}
 }
-
+/*
 void Game::QType() {
 	while (type != "tf" || type != "mc" || type != "fill") {
 		if (type == "tf" || type == "mc" || type == "fill") 
@@ -107,7 +121,7 @@ void Game::QType() {
 	
 	LoadQuestions(topic, type); // load questions about user topic and type
 }
-
+*/
 // TODO
 //bool RunGame() {
 //	int score = 0;
