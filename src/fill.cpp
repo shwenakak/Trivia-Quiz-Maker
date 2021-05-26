@@ -6,13 +6,7 @@
 
 using namespace std;
 
-string Fill::DisplayQuestion() const {
+void Fill::DisplayQuestion(GameQuestion* gq) const {
 	cout << this->question << endl;
-	return "hello";
-}
-
-bool Fill::CheckAnswer(string i, string s) const {
-	cout << this->answer << endl;
-	return true;
 }
 
