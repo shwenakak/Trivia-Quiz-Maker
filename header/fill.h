@@ -1,27 +1,17 @@
 #ifndef __FILL_HPP__
 #define __FILL_HPP__
 
-#include "questions.h"
+#include "type.hpp"
 
 #include <string>
 #include <vector>
 
 using namespace std;
 
-class Fill : public Questions {
-	private:
-		string question;
-		string answer;
-
+class Fill : public Type {
 	public:
-		Fill(string question, string answer) {
-			this->question = question;
-			this->answer = answer;
-		}
-
-		virtual string DisplayQuestion() const;
-		virtual bool CheckAnswer(string, string) const;
-			
+		Fill() {} 
+		virtual void DisplayQuestion(GameQuestion*) const;
 };
 
 #endif // __FILL_HPP__
