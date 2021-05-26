@@ -1,4 +1,4 @@
-#include "quiz.cpp"
+#include "game.cpp"
 
 #include <iostream>
 
@@ -6,10 +6,10 @@ using namespace std;
 
 int main() {
 	
-	Quiz q;
+	Game g;
 
-	q.PickTopic();
-	q.QType();
+	g.PickTopic();
+	g.QType();
 
 	//if (q.RunGame())
 	//	cout << "CONGRATS! YOU WON!" << endl;
