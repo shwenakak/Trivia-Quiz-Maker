@@ -1,10 +1,15 @@
 #ifndef __GAMEQUESTION_HPP__
 #define __GAMEQUESTION_HPP__
 
+//#include "type.hpp"
+
 #include <string>
+#include <vector>
 #include <iostream>
 
 using namespace std;
+
+//class Type;
 
 class GameQuestion {
 	protected:
@@ -12,10 +17,14 @@ class GameQuestion {
 		int qPoints; // how much each question is worth
 		int score; // user score
 	public:
-		virtual GameQuestion(string, int) = default;
-		virtual GameQuestion(string, bool) = default;
-		virtual ~GameQuestion() = default;
+		//GameQuestion(string, int);
+		//GameQuestion(string, bool);
+		//virtual ~GameQuestion();
 		virtual string GetAnswer() const = 0;
+
+		virtual string GetQuestion() const { return "q"; }
+		// implement in Option class so we can use it in Display(GameQuestion*) function in Type derived classes
+		//virtual vector<GameQuestion*> GetOptions() const;
 };
 
 
