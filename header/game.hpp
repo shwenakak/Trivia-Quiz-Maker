@@ -133,8 +133,14 @@ class Game {
 			srand(time(0));
 			for (int i = 0; i < nums.size(); i++) {
 				GameQuestion* new_q = new Question(all_q.at(nums.at(i)), 3);
-				new_q->AddOption(new Option("true", true));
-				new_q->AddOption(new Option("false", false));
+				if (all_a.at(nums.at(i)) == "true") {
+					new_q->AddOption(new Option("true", true));
+					new_q->AddOption(new Option("false", false));
+				}
+				else {
+					new_q->AddOption(new Option("true", false));
+					new_q->AddOption(new Option("false", true));
+				}
 				questions.push_back(new_q);
 				printed.push_back(false);
 			}
@@ -157,11 +163,13 @@ class Game {
 			ifstream aFile; // use this to go thorugh questions file
 			string question;
 			string answer;
+			string choice;
 
 			vector<int> nums; // nums of which questions are already in the questions vector
 
 			vector<string> all_q;
 			vector<string> all_a;
+			vector<vector<string> > optionChoices; // list of option choices for each question
 
 			// specify path to file from directory where executable is called
 			qFile.open("notes/" + topic + "_mc.txt");
@@ -180,8 +188,24 @@ class Game {
 			int totalLines = 0;
 			while (getline(qFile, question) && getline(aFile,answer)) {
 				totalLines++;
-				all_q.push_back(question);
+				int endQuestion = question.find("?"); // get the stuff before the question mark, that is the question
+			//	cout << question.substr(0, endQuestion + 1) << endl;
+				string allChoices = question.substr(endQuestion + 2, question.size());
+			//	cout << allChoices << endl;
+				all_q.push_back(question.substr(0, endQuestion + 1));
 				all_a.push_back(answer);
+				vector<string> choices;
+				while (choices.size() != 4) {
+					int optionIndex = allChoices.find(",");
+		//			cout << "\t" << allChoices.substr(0, optionIndex) << endl;
+					choices.push_back(allChoices.substr(0, optionIndex));
+					// once that option is loaded into vector, chop it off the string and repeat
+					allChoices = allChoices.substr(optionIndex + 2, allChoices.size());	
+		//			cout << allChoices << endl;
+				}
+				optionChoices.push_back(choices); // append vector of option choices for each questoin
+				choices.clear(); // empty vector so future values aren't added on top of existing vals
+				//cout << question.substr(endQuestion + 2, index) << endl;
 			}
 			
 			srand(time(0));
@@ -193,13 +217,26 @@ class Game {
 					nums.push_back(randNum);
 			}
 			
+	/*		for (int i = 0; i < optionChoices.size(); i++) {
+				for (int j = 0; j < optionChoices.at(j).size(); j++)
+					cout << "\t" << optionChoices.at(i).at(j) << endl;
+				cout << "----------------------------------------" << endl;
+			}
+	*/
 			srand(time(0));
 			for (int i = 0; i < nums.size(); i++) {
+//				cout << "CORRECT ANSWER: " << all_a.at(nums.at(i)) << endl;
 				GameQuestion* new_q = new Question(all_q.at(nums.at(i)), 4);
-				new_q->AddOption(new Option("1", false));
-				new_q->AddOption(new Option("2", false));
-				new_q->AddOption(new Option("3", false));
-				new_q->AddOption(new Option("4", true));
+				// add options for each question
+				for (int j = 0; j < optionChoices.at(nums.at(i)).size(); j++) {
+//					cout << optionChoices.at(nums.at(i)).at(j) << endl;
+					// correct answer, mark true
+					if (optionChoices.at(nums.at(i)).at(j) == all_a.at(nums.at(i)))
+						new_q->AddOption(new Option(optionChoices.at(nums.at(i)).at(j), true));
+					// incorrect answer, mark false
+					else
+						new_q->AddOption(new Option(optionChoices.at(nums.at(i)).at(j), false));
+				}
 				questions.push_back(new_q);
 				printed.push_back(false);
 			}
