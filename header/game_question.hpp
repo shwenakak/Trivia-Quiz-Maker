@@ -13,9 +13,9 @@ using namespace std;
 
 class GameQuestion {
 	protected:
-		int totalPoints; // how many points all questions are worth together
+		int totalPoints = 0; // how many points all questions are worth together
 		int qPoints; // how much each question is worth
-		int score; // user score
+		int score = 0; // user score
 	public:
 		virtual ~GameQuestion() = default;
 		virtual string GetAnswer() const = 0;
@@ -31,6 +31,10 @@ class GameQuestion {
 		virtual vector<GameQuestion*> GetOptions() { }
 		virtual vector<GameQuestion*> AllOptions() { }
 		virtual string GetSingleOption() { }
+		virtual int GetScore() const { }
+		virtual int GetTotalPoints() const { }
+		virtual void UpdateUserScore(int) { }
+		virtual int QPoints() { } // how much is that question worth
 };
 
 

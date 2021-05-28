@@ -15,19 +15,31 @@ class Question : public GameQuestion {
 		vector<GameQuestion*> options; // list of options for each question
 		int hint = 1; // one hint for rn, can change later
 	public:
-		Question(string question, int points) : GameQuestion(), q(question), p(points) { }
+		Question(string question, int points) : GameQuestion(), q(question), p(points) {
+			qPoints = points; 
+			totalPoints += points;
+		}
 		~Question() {
 			for (int i = 0; i < options.size(); i++)
 				delete options.at(i);
 			options.clear();
 		}
-		int GetScore() { return score; } // protected var in parent class
-		int GetTotalPoints() { return totalPoints; } // protected var in parent class
+	//	int GetScore() { return score; } // protected var in parent class
+	//	int GetTotalPoints() { return totalPoints; } // protected var in parent class
+		
 		//void UseHint(); // protected var hint--
 		// TODO
 		virtual string GetAnswer() const {
 			return "happy";
 		}
+		virtual int GetScore() const { return score; }
+		virtual int GetTotalPoints() const { return totalPoints; }
+		virtual void UpdateUserScore(int add) {
+			score += add;
+		}
+		virtual int QPoints() { 
+			cout << "THIS QUESTION WORTH: " << qPoints << endl;
+			return qPoints; }
 
 		virtual string GetQuestion() const { return q; }
 
