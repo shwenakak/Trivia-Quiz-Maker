@@ -12,7 +12,6 @@ class Fill : public Type {
 	public:
 		Fill() : Type() {} 
 		virtual void Display(GameQuestion* gq) const {
-			cout << "IN FILL CLASS" << endl;
 			cout << "\t" << gq->GetQuestion() << endl;
 			vector<GameQuestion*> options = gq->AllOptions();
 			for (int i = 0; i < options.size(); i++) {
