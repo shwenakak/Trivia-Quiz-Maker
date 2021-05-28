@@ -28,8 +28,9 @@ class GameQuestion {
 		virtual int HowManyOptions() const { return 11; }
 
 		virtual void AddOption(GameQuestion* gq) { }
-		virtual void DisplayOptions() { }
-		virtual void GetOption() { }
+		virtual vector<GameQuestion*> GetOptions() { }
+		virtual vector<GameQuestion*> AllOptions() { }
+		virtual string GetSingleOption() { }
 };
 
 

@@ -20,7 +20,8 @@ class Option : public GameQuestion {
 		virtual string GetQuestion() const { return "dont need this function in this class"; }
 		virtual int HowManyOptions() const { return -69; }
 		virtual void AddOption(GameQuestion* gq) { cout << "OPTION CLASS" << endl; }
-		virtual void DisplayOptions() { }
+		virtual vector<GameQuestion*> AllOptions() { }
+		virtual string GetSingleOption() { return option; }
 		
 };
 

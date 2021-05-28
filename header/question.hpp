@@ -33,7 +33,8 @@ class Question : public GameQuestion {
 		virtual int HowManyOptions() const { return options.size(); }
 
 		virtual void AddOption(GameQuestion* op) { options.push_back(op); }
-		virtual void DisplayOption() { }
+		virtual vector<GameQuestion*> AllOptions() { return options; }
+		virtual string GetSingleOption() { return "dont need in this class. need in Option class"; }
 };
 
 
