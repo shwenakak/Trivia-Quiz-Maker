@@ -19,6 +19,7 @@ class Question : public GameQuestion {
 		~Question() {
 			for (int i = 0; i < options.size(); i++)
 				delete options.at(i);
+			options.clear();
 		}
 		int GetScore() { return score; } // protected var in parent class
 		int GetTotalPoints() { return totalPoints; } // protected var in parent class

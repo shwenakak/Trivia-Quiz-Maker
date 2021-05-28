@@ -17,7 +17,7 @@ class GameQuestion {
 		int qPoints; // how much each question is worth
 		int score; // user score
 	public:
-		//virtual ~GameQuestion();
+		virtual ~GameQuestion() = default;
 		virtual string GetAnswer() const = 0;
 
 		virtual string GetQuestion() const { return "garbage. need this for Question class"; }

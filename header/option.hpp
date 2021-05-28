@@ -15,6 +15,7 @@ class Option : public GameQuestion {
 
 	public:
 		Option(string o, bool c) : GameQuestion(), option(o), isCorrect(c) { }
+		//~Option() { cout << endl << "OPTION DESTRUCTOR" << endl; }
 
 		virtual string GetAnswer() const { return "dummy"; }
 		virtual string GetQuestion() const { return "dont need this function in this class"; }
