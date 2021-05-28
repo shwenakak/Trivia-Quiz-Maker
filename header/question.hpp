@@ -23,13 +23,17 @@ class Question : public GameQuestion {
 		int GetScore() { return score; } // protected var in parent class
 		int GetTotalPoints() { return totalPoints; } // protected var in parent class
 		//void UseHint(); // protected var hint--
-		void AddOption(GameQuestion* op) { options.push_back(op); }
 		// TODO
 		virtual string GetAnswer() const {
 			return "happy";
 		}
 
 		virtual string GetQuestion() const { return q; }
+
+		virtual int HowManyOptions() const { return options.size(); }
+
+		virtual void AddOption(GameQuestion* op) { options.push_back(op); }
+		virtual void DisplayOption() { }
 };
 
 
