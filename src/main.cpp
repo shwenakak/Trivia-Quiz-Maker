@@ -23,6 +23,10 @@ int main() {
 	int size = g.HowManyQuestions();	
 	cout << size << endl;
 
+	string userInput;
+	int userScore = 0;
+	int totalPoints = 0;
+
 	for (int i = 0; i < size; i++) {
 		GameQuestion* q = g.GetQuestion(i);
 		if (q->HowManyOptions() == 4)
@@ -33,28 +37,16 @@ int main() {
 			g.SetStrategy(new Fill());
 
 		g.print(q);
+		getline(cin, userInput);
+		// void function but it will appropriately update user score within
+		g.CheckUserAnswer(userInput, q);
+		// update userScore and totalPoints available so far
+		userScore += q->GetScore();
+		totalPoints += q->GetTotalPoints();
 	}	
-
 	
-/*	if (g.LoadQuestions(topic, "fill")) // if 2 fill in the blank questions were appropriately added, change strategy and repeat
-		g.SetStrategy(new TF());
-	else {
-		cout << "Error adding Fill-in-the=Blank Questions" << endl;
-		exit(1);
-	}
-
-	if (g.LoadQuestions(topic, "tf")) // if 2 TF questions were approrpately added, change strategy and repeat
-		g.SetStrategy(new MC());
-	else {
-		cout << "Error adding TF Questions" << endl;
-		exit(1);
-	}
-
-	if (!g.LoadQuestions(topic, "mc")) { // if 2 MC questions were NOT appropriately added, spit ERROR. Else move on
-		cout << "Error adding MC Questions" << endl;
-		exit(1);
-	}
-*/	
+	cout << "YOUR SCORE: " << userScore << endl;
+	cout << "TOTAL POSSIBLE SCORE: " << totalPoints << endl;
 
 	//if (q.RunGame())
 	//	cout << "CONGRATS! YOU WON!" << endl;
