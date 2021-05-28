@@ -14,6 +14,10 @@ class MC : public Type {
                 virtual void Display(GameQuestion* gq) const {
                         cout << "IN MC CLASS" << endl;
                         cout << "\t" << gq->GetQuestion() << endl;
+			vector<GameQuestion*> options = gq->AllOptions();
+                        for (int i = 0; i < options.size(); i++) {
+                                cout << "\t\t" << options.at(i)->GetSingleOption() << endl;
+                        }
                 }
 };
 
