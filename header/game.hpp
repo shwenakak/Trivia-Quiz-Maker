@@ -4,6 +4,7 @@
 #include "type.hpp"
 //#include "game_question.hpp"
 #include "question.hpp"
+#include "option.hpp"
 
 #include <string>
 #include <vector>
@@ -19,15 +20,12 @@ using namespace std;
 
 class Game {
 	private:
-		//string topic; // what topic does user want: Sports, Science, or Music
-		// holds all questions and answers
-		//vector<string> all_q;
-		//vector<string> all_a;
-			
 		// holds all the objects of questions for the current game
 		vector<GameQuestion*> questions;
 		// holds the correct answers for each question in above vector
 		vector<string> answers;
+		// holds bool values of if the question hasbeen printed or not
+		vector<bool> printed;
 		Type* type = nullptr;
 
 		void LoadFillQuestions(string topic) {
@@ -75,12 +73,17 @@ class Game {
 			srand(time(0));
 			for (int i = 0; i < nums.size(); i++) {
 				questions.push_back(new Question(all_q.at(nums.at(i)), 5));
+				printed.push_back(false);
 			}
-			
+/*			
 			for (int i = 0; i < questions.size(); i++) {
-				print(questions.at(i));
+				if (printed.at(i) == false) {
+					print(questions.at(i));
+					printed.at(i) = true;
+				}
 			}
-			
+			cout << endl;
+*/			
 			qFile.close();
 			aFile.close();
 			nums.clear();
@@ -129,13 +132,21 @@ class Game {
 			
 			srand(time(0));
 			for (int i = 0; i < nums.size(); i++) {
-				questions.push_back(new Question(all_q.at(nums.at(i)), 3));
+				GameQuestion* new_q = new Question(all_q.at(nums.at(i)), 3);
+				new_q->AddOption(new Option("true", true));
+				new_q->AddOption(new Option("false", false));
+				questions.push_back(new_q);
+				printed.push_back(false);
 			}
-			
+	/*		
 			for (int i = 0; i < questions.size(); i++) {
-				print(questions.at(i));
+				if (printed.at(i) == false) {
+					print(questions.at(i));
+					printed.at(i) = true;
+				}
 			}
-			
+			cout << endl;			
+*/
 			qFile.close();
 			aFile.close();
 			nums.clear();
@@ -184,13 +195,23 @@ class Game {
 			
 			srand(time(0));
 			for (int i = 0; i < nums.size(); i++) {
-				questions.push_back(new Question(all_q.at(nums.at(i)), 4));
+				GameQuestion* new_q = new Question(all_q.at(nums.at(i)), 4);
+				new_q->AddOption(new Option("1", false));
+				new_q->AddOption(new Option("2", false));
+				new_q->AddOption(new Option("3", false));
+				new_q->AddOption(new Option("4", true));
+				questions.push_back(new_q);
+				printed.push_back(false);
 			}
-			
+		/*	
 			for (int i = 0; i < questions.size(); i++) {
-				print(questions.at(i));
+				if (printed.at(i) == false) {
+					print(questions.at(i));
+					printed.at(i) = true;
+				}
 			}
-			
+			cout << endl;
+		*/	
 			qFile.close();
 			aFile.close();
 			nums.clear();
@@ -208,15 +229,22 @@ class Game {
 			delete type;
 			type = new_strategy;
 		}
-		void AddQuestion(GameQuestion* gq) {
+/*		void AddQuestion(GameQuestion* gq) {
 			questions.push_back(gq);
-		}
+		}*/
 		void PopulateAnswers() { 
 			for (int i = 0; i < questions.size(); i++)
 				answers.push_back(questions.at(i)->GetAnswer());
 		}
 		void print(GameQuestion* gq) {
-			type->Display(gq);
+			cout << "NUM OPTIONS: " << gq->HowManyOptions() << endl;
+			type->Display(gq); /*
+			for (int i = 0; i < questions.size(); i++) {
+				if (printed.at(i) == false) {
+					type->Display(questions.at(i));
+					printed.at(i) = true;
+                                }
+                        } */
 		}
 		// which topic will user choose: Music, Sports, or Scinec
 		string PickTopic() {
@@ -243,8 +271,11 @@ class Game {
 			else if (y == "mc")
 				LoadMCQuestions(t);
 		}
-		//void QType(); // which questions does user want: T/F, MC, FillinBlank
-		
+	
+		GameQuestion* GetQuestion(int index) { return questions.at(index); }
+
+		int HowManyQuestions() { return questions.size(); }	
+	
 		//bool RunGame(); // this will play the game
 };
 
