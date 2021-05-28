@@ -77,15 +77,16 @@ class Game {
 				questions.push_back(new Question(all_q.at(nums.at(i)), 5));
 			}
 			
-			for (int i = 0; i < questions.size(); i++)
+			for (int i = 0; i < questions.size(); i++) {
 				print(questions.at(i));
+			}
 			
 			qFile.close();
 			aFile.close();
 			nums.clear();
 		}
 		
-		void LoadTFQuestions() {
+		void LoadTFQuestions(string topic) {
 			ifstream qFile; // use this to go thorugh questions file
 			ifstream aFile; // use this to go thorugh questions file
 			string question;
@@ -98,14 +99,14 @@ class Game {
 
 			// specify path to file from directory where executable is called
 			qFile.open("notes/" + topic + "_tf.txt");
-			aFile.open("notes/" + topic + "_answers_fill.txt");
+			aFile.open("notes/" + topic + "_answers_tf.txt");
 			
 			if (!qFile.is_open()) {
-				cout << topic << " FILL QUESTIONS FILE NOT OPEN" << endl;
+				cout << topic << " TF QUESTIONS FILE NOT OPEN" << endl;
 				exit(1);
 			}
 			if (!aFile.is_open()) {
-				cout << topic << " FILL ANSWERS FILE NOT OPEN" << endl;
+				cout << topic << " TF ANSWERS FILE NOT OPEN" << endl;
 				exit(1);
 			}
 			
@@ -128,17 +129,72 @@ class Game {
 			
 			srand(time(0));
 			for (int i = 0; i < nums.size(); i++) {
-				questions.push_back(new Question(all_q.at(nums.at(i)), 5));
+				questions.push_back(new Question(all_q.at(nums.at(i)), 3));
 			}
 			
-			for (int i = 0; i < questions.size(); i++)
+			for (int i = 0; i < questions.size(); i++) {
 				print(questions.at(i));
+			}
 			
 			qFile.close();
 			aFile.close();
 			nums.clear();
 		}
-		void LoadMCQuestion();
+		
+		void LoadMCQuestions(string topic) {
+			ifstream qFile; // use this to go thorugh questions file
+			ifstream aFile; // use this to go thorugh questions file
+			string question;
+			string answer;
+
+			vector<int> nums; // nums of which questions are already in the questions vector
+
+			vector<string> all_q;
+			vector<string> all_a;
+
+			// specify path to file from directory where executable is called
+			qFile.open("notes/" + topic + "_mc.txt");
+			aFile.open("notes/" + topic + "_answers_mc.txt");
+			
+			if (!qFile.is_open()) {
+				cout << topic << " MC QUESTIONS FILE NOT OPEN" << endl;
+				exit(1);
+			}
+			if (!aFile.is_open()) {
+				cout << topic << " MC ANSWERS FILE NOT OPEN" << endl;
+				exit(1);
+			}
+			
+			// count total lines and ppulate vectors with all questions and answers
+			int totalLines = 0;
+			while (getline(qFile, question) && getline(aFile,answer)) {
+				totalLines++;
+				all_q.push_back(question);
+				all_a.push_back(answer);
+			}
+			
+			srand(time(0));
+			int randNum = 0;
+			while (nums.size() != 2) {
+				randNum = rand() % totalLines;
+				// add it to vector only if not found
+				if (find(nums.begin(), nums.end(), randNum) == nums.end())
+					nums.push_back(randNum);
+			}
+			
+			srand(time(0));
+			for (int i = 0; i < nums.size(); i++) {
+				questions.push_back(new Question(all_q.at(nums.at(i)), 4));
+			}
+			
+			for (int i = 0; i < questions.size(); i++) {
+				print(questions.at(i));
+			}
+			
+			qFile.close();
+			aFile.close();
+			nums.clear();
+		}
 	
 	public:
 		Game() {}
@@ -179,58 +235,13 @@ class Game {
 			}
 		}
 		// fill vectors with questions according to user topic
-		bool LoadQuestions(string t, string y) {
-			ifstream qFile; // use this to go through questions file
-			ifstream aFile; // use this to go thorugh answers file
-			string question;
-			string answer;
-			
-			vector<int> nums; // nums of which questions are alreafy in the questions vector
-
-			vector<string> all_q;
-			vector<string> all_a;
-
-			// specifiy path to file from directory where executbale is called
-			qFile.open("notes/" + t + "_" + y +".txt");
-			aFile.open("notes/" + t + "_answers_" + y +".txt");
-
-			if (!qFile.is_open()) {
-				cout << "QUESTIONS FILE NOT OPEN" << endl;
-				exit(1);
-			}
-			if (!aFile.is_open()) {
-				cout << "ANSWERS FILE NOT OPEN" << endl;
-				exit(1);
-			}
-
-			// count total lines and ppulate vectors with all questions and answers
-			int totalLines = 0;
-			while (getline(qFile, question) && getline(aFile,answer)) {
-				totalLines++;
-				all_q.push_back(question);
-				all_a.push_back(answer);
-			}
-
-			srand(time(0));
-			int randNum = 0;
-			while (nums.size() != 2) {
-				randNum = rand() % totalLines;
-				// add it to vector only if not found
-				if (find(nums.begin(), nums.end(), randNum) == nums.end())
-					nums.push_back(randNum);
-			}
-
-			srand(time(0));
-			for (int i = 0; i < nums.size(); i++) {
-				questions.push_back(new Question(all_q.at(nums.at(i)), 5));
-			}
-
-			for (int i = 0; i < questions.size(); i++)
-				print(questions.at(i));
-
-			qFile.close();
-			aFile.close();
-			nums.clear();
+		void LoadQuestions(string t, string y) {
+			if (y == "fill")
+				LoadFillQuestions(t);
+			else if (y == "tf")
+				LoadTFQuestions(t);
+			else if (y == "mc")
+				LoadMCQuestions(t);
 		}
 		//void QType(); // which questions does user want: T/F, MC, FillinBlank
 		
