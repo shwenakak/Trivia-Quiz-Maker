@@ -71,13 +71,16 @@ class Game {
 				if (find(nums.begin(), nums.end(), randNum) == nums.end())
 					nums.push_back(randNum);
 			}
-																		srand(time(0));
+		
+			srand(time(0));
 			for (int i = 0; i < nums.size(); i++) {
 				questions.push_back(new Question(all_q.at(nums.at(i)), 5));
 			}
-																		for (int i = 0; i < questions.size(); i++)
+			
+			for (int i = 0; i < questions.size(); i++)
 				print(questions.at(i));
-																		qFile.close();
+			
+			qFile.close();
 			aFile.close();
 			nums.clear();
 		}
