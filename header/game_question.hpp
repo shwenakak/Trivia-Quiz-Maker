@@ -22,9 +22,9 @@ class GameQuestion {
 		//virtual ~GameQuestion();
 		virtual string GetAnswer() const = 0;
 
-		virtual string GetQuestion() const { return "q"; }
+		virtual string GetQuestion() const { return "garbage. need this for Question class"; }
 		// implement in Option class so we can use it in Display(GameQuestion*) function in Type derived classes
-		//virtual vector<GameQuestion*> GetOptions() const;
+		//virtual vector<GameQuestion*> GetOptions() const = 0;
 };
 
 
