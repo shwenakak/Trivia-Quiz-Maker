@@ -1,7 +1,7 @@
-#include "game.cpp"
+#include "../header/game.hpp"
 #include "../header/fill.hpp"
-//#include "../header/tf.hpp"
-//#include "../header/mc.hpp"
+#include "../header/tf.hpp"
+#include "../header/mc.hpp"
 
 #include <iostream>
 #include <string>
@@ -15,7 +15,13 @@ int main() {
 	string topic = g.PickTopic(); // user will pick either Sports, Science, or Music as a topic
 	
 	g.SetStrategy(new Fill());
-	if (g.LoadQuestion(topic, "fill")) // if 2 fill in the blank questions were appropriately added, change strategy and repeat
+	g.LoadQuestions(topic, "fill");
+	g.SetStrategy(new TF());
+	g.LoadQuestions(topic, "tf");
+	g.SetStrategy(new MC());
+	g.LoadQuestions(topic, "mc");
+	
+/*	if (g.LoadQuestions(topic, "fill")) // if 2 fill in the blank questions were appropriately added, change strategy and repeat
 		g.SetStrategy(new TF());
 	else {
 		cout << "Error adding Fill-in-the=Blank Questions" << endl;
@@ -33,7 +39,7 @@ int main() {
 		cout << "Error adding MC Questions" << endl;
 		exit(1);
 	}
-	
+*/	
 
 	//if (q.RunGame())
 	//	cout << "CONGRATS! YOU WON!" << endl;
