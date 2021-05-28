@@ -23,12 +23,8 @@ int main() {
 	int size = g.HowManyQuestions();	
 	cout << size << endl;
 
-//	g.SetStrategy(new Fill());
 	for (int i = 0; i < size; i++) {
 		GameQuestion* q = g.GetQuestion(i);
-		// if q->HowManyOptions() == 4; SetStrategy(new MC())
-		// else if q->HowManyOptions() == 2; SetStrategy(new TF())
-		// else SetStrategy(new Fill())
 		if (q->HowManyOptions() == 4)
 			g.SetStrategy(new MC());
 		else if (q->HowManyOptions() == 2)
