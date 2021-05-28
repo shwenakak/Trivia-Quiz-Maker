@@ -264,7 +264,21 @@ class Game {
 		GameQuestion* GetQuestion(int index) { return questions.at(index); }
 
 		int HowManyQuestions() { return questions.size(); }	
-	
+
+		void CheckUserAnswer(string input, GameQuestion* q) {
+			string correct_answer = q->GetAnswer();
+			// convert user input to all lower case in case they decided to be smart and type with weird casing
+			transform(input.begin(), input.end(), input.begin(), ::tolower);
+			if (input == correct_answer) {
+				// update user score with how much that uestion is qortk
+				cout << "CORRECT ANSWER" << endl;
+				q->UpdateUserScore(q->QPoints());
+			}
+			else {
+				// give them a hint
+				cout << "INCORRECT ANSWER" << endl;
+			}
+		}	
 		//bool RunGame(); // this will play the game
 };
 
