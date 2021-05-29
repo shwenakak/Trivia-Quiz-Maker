@@ -24,8 +24,6 @@ class Question : public GameQuestion {
 				delete options.at(i);
 			options.clear();
 		}
-	//	int GetScore() { return score; } // protected var in parent class
-	//	int GetTotalPoints() { return totalPoints; } // protected var in parent class
 		
 		//void UseHint(); // protected var hint--
 		// TODO
@@ -38,7 +36,7 @@ class Question : public GameQuestion {
 			score += add;
 		}
 		virtual int QPoints() { 
-			cout << "THIS QUESTION WORTH: " << qPoints << endl;
+			//cout << "THIS QUESTION WORTH: " << qPoints << endl;
 			return qPoints; }
 
 		virtual string GetQuestion() const { return q; }
