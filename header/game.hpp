@@ -125,7 +125,7 @@ class Game {
 			srand(time(0));
 			for (int i = 0; i < nums.size(); i++) {
 				GameQuestion* new_q = new Question(all_q.at(nums.at(i)), 3);
-				if (all_a.at(nums.at(i)) == "true") {
+				if (all_a.at(nums.at(i)) == "true" || all_a.at(nums.at(i)) == "True") {
 					new_q->AddOption(new Option("true", true));
 					new_q->AddOption(new Option("false", false));
 				}
@@ -243,11 +243,11 @@ class Game {
 				if (topic == "music" || topic == "sports" || topic == "science") {
 					return topic;
 				}
-				cout << "TOPIC: " << topic << endl;
+				//cout << "TOPIC: " << topic << endl;
 				cout << "What topic would you like to test your knowledge in?" << endl;
 				cout << "Music, Sports, or Science" << endl;
-				//cin >> topic;
-				topic = "SpoRTs";
+				cin >> topic;
+				//topic = "SpoRTs";
 				transform(topic.begin(), topic.end(), topic.begin(), ::tolower);
 			}
 		}
