@@ -38,6 +38,10 @@ int main() {
 
 		g.print(q);
 		getline(cin, userInput);
+		// make sure user input is not empty	
+		while (userInput.empty())
+			getline(cin, userInput);
+//		cout << "USER INPUT: " << userInput << endl;
 		// void function but it will appropriately update user score within
 		g.CheckUserAnswer(userInput, q);
 		// update userScore and totalPoints available so far
