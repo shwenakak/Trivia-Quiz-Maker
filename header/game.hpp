@@ -269,6 +269,8 @@ class Game {
 			string correct_answer = q->GetAnswer();
 			// convert user input to all lower case in case they decided to be smart and type with weird casing
 			transform(input.begin(), input.end(), input.begin(), ::tolower);
+			transform(correct_answer.begin(), correct_answer.end(), correct_answer.begin(), ::tolower);
+			
 			if (input == correct_answer) {
 				// update user score with how much that uestion is qortk
 				cout << "CORRECT ANSWER" << endl;
