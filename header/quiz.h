@@ -18,4 +18,14 @@ class Quiz {
 		//holds all questions and answers
 		vector<Questions*> game_questions;
 		
-		void LoadQuestions(string, string); //fils vectors 
+		void LoadQuestions(string, string); //fils vectors
+	public:
+		~Quiz();
+		void PickTopic(); // which topic will user choose: Music, Sports, or Science
+		void QType(); // which questions does user want: T/F, MC, FillinBlank
+		//TODO
+
+		bool RunGame();
+};
+
+#endif //__QUIZ_HPP__ 
