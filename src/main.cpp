@@ -21,7 +21,6 @@ int main() {
 	g.LoadQuestions(topic, "mc"); // load 2 mc questions
 
 	int size = g.HowManyQuestions();	
-	cout << size << endl;
 
 	string userInput;
 	int userScore = 0;
