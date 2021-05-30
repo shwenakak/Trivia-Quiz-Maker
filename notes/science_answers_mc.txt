@@ -3,3 +3,4 @@ ROYGBIV
 4
 Resistance
 4
+Mammal
