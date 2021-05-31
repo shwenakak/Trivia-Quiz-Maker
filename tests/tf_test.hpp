@@ -3,7 +3,7 @@
 
 #include "gtest/gtest.h"
 
-#include "../header/Type.hpp"
+#include "../header/type.hpp"
 #include "../header/tf.hpp"
 
 using namespace std;

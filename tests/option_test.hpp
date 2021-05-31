@@ -2,7 +2,7 @@
 #define __OPTION_TEST_HPP__
 
 #include "gtest/gtest.h"
-#include "../header/Option.hpp"
+#include "../header/option.hpp"
 
 TEST(OptionTest, TestCorrectAnswerTrue) {
   Option o("TestOption", true);
