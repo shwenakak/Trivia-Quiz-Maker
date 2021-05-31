@@ -17,7 +17,7 @@ int main() {
 
 //	g.SetStrategy(new Fill());	
 	g.LoadQuestions(topic, "fill"); // load 2 fill-in-blank questions
-	g.LoadQuestions(topic, "tf"); // load 2 tf questions
+/*	g.LoadQuestions(topic, "tf"); // load 2 tf questions
 	g.LoadQuestions(topic, "mc"); // load 2 mc questions
 
 	int size = g.HowManyQuestions();	
@@ -56,6 +56,6 @@ int main() {
 	//	cout << "CONGRATS! YOU WON!" << endl;
 	//else
 	//	cout << "Ouch, better luck next time loser" << endl;	
-
+*/
 	return 0;
 }

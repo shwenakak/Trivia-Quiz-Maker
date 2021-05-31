@@ -1,15 +1,11 @@
 #ifndef __GAMEQUESTION_HPP__
 #define __GAMEQUESTION_HPP__
 
-//#include "type.hpp"
-
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
 
 using namespace std;
-
-//class Type;
 
 class GameQuestion {
 	protected:

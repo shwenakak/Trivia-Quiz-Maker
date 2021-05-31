@@ -2,7 +2,7 @@
 #define __GAME_HPP__
 
 #include "type.hpp"
-//#include "game_question.hpp"
+//#include "GameQuestion.hpp"
 #include "question.hpp"
 #include "option.hpp"
 
@@ -29,7 +29,7 @@ class Game {
 		Type* type = nullptr;
 
 		void LoadFillQuestions(string topic) {
-			ifstream qFile; // use this to go thorugh questions file
+/*			ifstream qFile; // use this to go thorugh questions file
 			ifstream aFile; // use this to go thorugh questions file
 			string question;
 			string answer;
@@ -51,7 +51,6 @@ class Game {
 				cout << topic << " FILL ANSWERS FILE NOT OPEN" << endl;
 				exit(1);
 			}
-
 
 			// count total lines and ppulate vectors with all questions and answers
 			int totalLines = 0;
@@ -78,7 +77,7 @@ class Game {
 			
 			qFile.close();
 			aFile.close();
-			nums.clear();
+			nums.clear(); */
 		}
 		
 		void LoadTFQuestions(string topic) {

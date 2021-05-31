@@ -4,49 +4,55 @@
 #include "GameQuestion.hpp"
 
 #include <string>
-#include <vector>
+#include <iostream>
 
 using namespace std;
 
-class Question : public GameQuestion {
+class Question : public GameQuestion 
+{
 	private:
-		string q; // what is the question
-		int p; // how much is that question worth
-		vector<GameQuestion*> options; // list of options for each question
-		int hint = 1; // one hint for rn, can change later
+		string q;
+		int num;
+		vector<GameQuestion*> options; 
+
 	public:
-		Question(string question, int points) : GameQuestion(), q(question), p(points) {
-			qPoints = points; 
-			totalPoints += points;
+		Question(string quest, int n) : GameQuestion(), q(quest), num(n) {
+			qPoints = n;
+			totalPoints += n;
 		}
 		~Question() {
-			for (int i = 0; i < options.size(); i++)
+			for (int i = 0; i < options.size(); i++) {
 				delete options.at(i);
-			options.clear();
-		}
-		
-		// TODO
-		virtual string CorrectAnswer() const {
-			return "happy";
+			}
 		}
 		virtual int GetScore() const { return score; }
 		virtual int GetTotalPoints() const { return totalPoints; }
-		virtual void UpdateUserScore(int add) {
-			score += add;
+		virtual void AddOption(GameQuestion* opt)
+		{
+			options.push_back(opt);
 		}
-		virtual int QPoints() { 
-			//cout << "THIS QUESTION WORTH: " << qPoints << endl;
-			return qPoints; }
-
-		virtual string GetQuestion() const { return q; }
-
+		virtual bool CorrectAnswer() { return true; }
+		virtual string GetAnswer() const
+		{
+			for(int i = 0; i < options.size(); i++)
+			{
+				if(options.at(i) -> CorrectAnswer())
+				{
+					return options.at(i) -> GetAnswer();
+				}
+				else
+				{
+					return "";
+				}
+			}
+		}
 		virtual int HowManyOptions() const { return options.size(); }
-
-		virtual void AddOption(GameQuestion* op) { options.push_back(op); }
+		virtual void UpdateUserScore(int add) { score += add; }
+		virtual int QPoints() { return qPoints; }
+		virtual string GetQuestion() const { return q; }
 		virtual vector<GameQuestion*> AllOptions() { return options; }
+		virtual vector<GameQuesiton*> GetOptions() { }
 		virtual string GetSingleOption() { return "dont need in this class. need in Option class"; }
 };
 
-
-
-#endif // __QUESTION_HPP__
+#endif
