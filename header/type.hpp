@@ -1,7 +1,7 @@
 #ifndef __QUESTIONS_HPP__
 #define __QUESTIONS_HPP__
 
-#include "game_question.hpp"
+#include "GameQuestion.hpp"
 
 #include <string>
 

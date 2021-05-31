@@ -3,7 +3,7 @@
 
 #include "gtest/gtest.h"
 
-#include "../header/game_question.hpp"
+#include "../header/GameQuestion.hpp"
 #include "../header/type.hpp"
 #include "../header/fill.hpp"
 

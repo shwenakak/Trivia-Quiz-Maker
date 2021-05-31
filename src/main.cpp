@@ -1,8 +1,8 @@
 #include "../header/game.hpp"
 #include "../header/fill.hpp"
-#include "../header/tf.hpp"
+#include "../header/TF.hpp"
 #include "../header/mc.hpp"
-#include "../header/game_question.hpp"
+#include "../header/GameQuestion.hpp"
 
 #include <iostream>
 #include <string>

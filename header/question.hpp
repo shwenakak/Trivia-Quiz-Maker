@@ -1,7 +1,7 @@
 #ifndef __QUESTION_HPP__
 #define __QUESTION_HPP__
 
-#include "game_question.hpp"
+#include "GameQuestion.hpp"
 
 #include <string>
 #include <vector>
@@ -25,9 +25,8 @@ class Question : public GameQuestion {
 			options.clear();
 		}
 		
-		//void UseHint(); // protected var hint--
 		// TODO
-		virtual string GetAnswer() const {
+		virtual string CorrectAnswer() const {
 			return "happy";
 		}
 		virtual int GetScore() const { return score; }
