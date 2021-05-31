@@ -18,7 +18,8 @@ class GameQuestion {
 		int score = 0; // user score
 	public:
 		virtual ~GameQuestion() = default;
-		virtual string CorrectAnswer() const = 0;
+		virtual string GetAnswer() const = 0;
+		virtual bool CorrectAnswer();
 
 		virtual string GetQuestion() const { return "garbage. need this for Question class"; }
 		
