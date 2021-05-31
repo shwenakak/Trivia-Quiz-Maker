@@ -1,5 +1,0 @@
-bee
-butterfly
-six
-giraffe
-migrate
