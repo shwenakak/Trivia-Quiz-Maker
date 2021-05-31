@@ -12,15 +12,16 @@ class Question : public GameQuestion
 {
 	private:
 		string q;
+		int num;
 		vector<GameQuestion*> options; 
 
 	public:
-		Option(string quest, vector<GameQuestion*>o) : GameQuestion(),q(quest), vector<GameQuestion*> o(options) {}
+		Question(string quest, int n) : GameQuestion(),q(quest), num(n) {}
 		int GetScore() = 0;
 		int GetTotalPoints() = 0;
-		void AddOption(GameQuestion*)
+		void AddOption(GameQuestion* opt)
 		{
-			options.push_back(GameQuestions*);
+			options.push_back(opt);
 		}
 		vitual string GetAnswer() const
 		{
@@ -33,9 +34,9 @@ class Question : public GameQuestion
 			
 				else
 				{
-					NULL;
+					return "";
 				}
 			}
 		}	
-}
+};
 #endif
