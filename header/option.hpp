@@ -1,7 +1,7 @@
 #ifndef __OPTION_HPP__
 #define __OPTION_HPP__
 
-#include "../header/Game_Question.hpp"
+#include "../header/GameQuestion.hpp"
 
 #include <string>
 #include <iostream>
@@ -17,16 +17,16 @@ class Option : public GameQuestion {
 	Option(string opt, bool corr) : GameQuestion(), option(opt), isCorrect(corr) { }
 
 	bool CorrectAnswer() : GameQuestion() {
-		return this->isCorrect
+		return this->isCorrect;
          }
 
         virtual string GetAnswer() const { 
-        if CorrectAnswer(){
-        return this->option
+        if ( CorrectAnswer() ) {
+        return this->option;
         }
          else{
-           return ""
+           return "";
         }
        }
-}
+};
 #endif

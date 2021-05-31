@@ -1,7 +1,7 @@
 #ifndef __TF_HPP__
 #define __TF_HPP__
 
-#include "../header/Type.hpp"
+#include "../header/type.hpp"
 
 #include <string>
 #include <vector>
