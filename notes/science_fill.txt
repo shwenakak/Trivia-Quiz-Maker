@@ -1,9 +1,6 @@
-A ______ collects pollen from flowers to make honey
-A caterpillar turns into a __________
-Spiders have _____ legs
-A ______ has the longest neck out of all the animals
-Birds ______ to warmer areas for the winter
-<<<<<<< HEAD
-=======
-A cucumber is a _____ .
->>>>>>> c4955f51d3a6dfa1dbfc679ceb1c60e553b5ad05
+A ______ collects pollen from flowers to make honey.
+A caterpillar turns into a __________.
+Spiders have _____ legs.
+A ______ has the longest neck out of all the animals.
+Birds ______ to warmer areas for the winter.
+A cucumber is a _____.

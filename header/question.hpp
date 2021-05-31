@@ -1,7 +1,7 @@
 #ifndef __QUESTION_HPP__
 #define __QUESTION_HPP__
 
-#include "../header/Game_Question.hpp"
+#include "../header/GameQuestion.hpp"
 
 #include <string>
 #include <iostream>
@@ -17,19 +17,19 @@ class Question : public GameQuestion
 
 	public:
 		Question(string quest, int n) : GameQuestion(),q(quest), num(n) {}
-		int GetScore() = 0;
-		int GetTotalPoints() = 0;
-		void AddOption(GameQuestion* opt)
+		virtual int GetScore() const (return score);
+		virtual int GetTotalPoints() const return(totalPoints);
+		virtual void AddOption(GameQuestion* opt)
 		{
 			options.push_back(opt);
 		}
-		vitual string GetAnswer() const
+		virtual string GetAnswer() const
 		{
 			for(int i = 0; i < option.size(); i++)
 			{
-				if(option.at(i) -> CorrectAnswer())
+				if(options.at(i) -> CorrectAnswer())
 				{
-					return option.at(i) -> GetAnswer();
+					return options.at(i) -> GetAnswer();
 				}
 			
 				else

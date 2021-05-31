@@ -1,14 +1,6 @@
-<<<<<<< HEAD
 Electrons are larger than molecules. True False
-The human body has four lungs True False
-Herbivores eat meat True False
-The human skeleton is made up of less than 100 bones True False
-Conductors have low resistance True False
-=======
-Electrons are larger than molecules.
-The human body has four lungs
-Herbivores eat meat
-The human skeleton is made up of less than 100 bones
-Conductors have low resistance
-The ocean covers the majority of the Earth
->>>>>>> c4955f51d3a6dfa1dbfc679ceb1c60e553b5ad05
+The human body has four lungs. True False
+Herbivores eat meat. True False
+The human skeleton is made up of less than 100 bones. True False
+Conductors have low resistance. True False
+The ocean covers the majority of the Earth. True False

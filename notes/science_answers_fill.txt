@@ -3,7 +3,4 @@ butterfly
 six
 giraffe
 migrate
-<<<<<<< HEAD
-=======
 fruit
->>>>>>> c4955f51d3a6dfa1dbfc679ceb1c60e553b5ad05
