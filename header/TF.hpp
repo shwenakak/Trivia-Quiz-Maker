@@ -13,17 +13,17 @@ class TF: public Type {
       
     public:
         TF() : Type() {}
-	
-	virtual void Display(GameQuestion* gQues) const { //if type points to a TF class, type->Display() will call the Display() function of the TF class
-	cout << "\t" << gq->GetQuestion() << endl;
-        cout << "\t\t True" << endl;
-        cout << "\t\t False" << endl;
+//if type points to a TF class, type->Display() will call the Display() function of the TF class	
+	virtual void Display(GameQuestion* gq, std::ostream& out) const {
+ 
+		out << "\t" << gq->GetQuestion() << endl;
+        	out << "\t\t True" << endl;
+        	out << "\t\t False" << endl;
 	/* vector<GameQuestion*> options = gq->AllOption();
 	for (int i=0;i < options.size(); i++){
 	cout << "\t\t" << options.at(i)->GetSingleOption() << endl;
 	} */
      }
-}
-}
+};
 #endif
 
