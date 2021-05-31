@@ -20,11 +20,11 @@ class GameQuestion {
         
         virtual string GetQuestions() const {
 		return "Shwena is awesome!"
-	};
+	}
         
         virtual int HowManyOptions() const {
 		return 5;
-	};
+	}
 
         virtual void AddOption(GameQuestion* gq) {}
 

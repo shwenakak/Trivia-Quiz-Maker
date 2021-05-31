@@ -16,7 +16,7 @@ class Option : public GameQuestion {
   public:
 	Option(string opt, bool corr) : GameQuestion(), option(opt), isCorrect(corr) { }
 
-	bool CorrectAnswer() : GameQuestion() {
+	bool CorrectAnswer() {
 		return this->isCorrect;
          }
 
