@@ -5,16 +5,14 @@
 #include <string>
 #include <vector>
 
-#include "../header/Game.hpp"
-
 using namespace std;
 
-class GameQuestion : public Game {
+class GameQuestion {
     
     protected:
-        int totalPoints = 0; //++
+        int totalPoints = 0; 
         int qPoints = 5;
-        int score = 0;  //++
+        int score = 0; 
 
     public:
         virtual GameQuestion(string , int ) = default;
