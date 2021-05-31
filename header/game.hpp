@@ -228,12 +228,8 @@ class Game {
 			delete type;
 			type = new_strategy;
 		}
-		void PopulateAnswers() { 
-			for (int i = 0; i < questions.size(); i++)
-				answers.push_back(questions.at(i)->GetAnswer());
-		}
-		void print(GameQuestion* gq) {
-			type->Display(gq); 
+		void print(GameQuestion* gq, std::ostream& out) {
+			type->Display(gq, out); 
 		}
 		// which topic will user choose: Music, Sports, or Scinec
 		string PickTopic() {
@@ -273,15 +269,15 @@ class Game {
 			
 			if (input == correct_answer) {
 				// update user score with how much that uestion is qortk
-				cout << "CORRECT ANSWER" << endl;
+				//cout << "CORRECT ANSWER" << endl;
 				q->UpdateUserScore(q->QPoints());
 			}
 			else {
 				// give them a hint
-				cout << "INCORRECT ANSWER" << endl;
+				//cout << "INCORRECT ANSWER" << endl;
+				cout << "";
 			}
-		}	
-		//bool RunGame(); // this will play the game
+		}
 };
 
 #endif // __GAME_HPP__
