@@ -35,7 +35,8 @@ int main() {
 		else
 			g.SetStrategy(new Fill());
 
-		g.print(q);
+		g.print(q, std::cout);
+		std::cout;
 		getline(cin, userInput);
 		// make sure user input is not empty	
 		while (userInput.empty())
