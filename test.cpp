@@ -1,4 +1,5 @@
 #include "tests/game_test.hpp"
+#include "tests/fill_test.hpp"
 
 #include "gtest/gtest.h"
 
