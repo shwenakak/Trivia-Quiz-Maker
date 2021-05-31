@@ -11,20 +11,20 @@ class GameQuestion {
     
     protected:
         int totalPoints = 0; 
-        int qPoints = 0;
+        int qPoints;
         int score = 0; 
 
     public:
-        
+        virtual ~GameQuestion() = default;
         virtual string GetAnswer() const = 0;
         
         virtual string GetQuestions() const {
-		return "Shwena is awesome!"
-	}
+		        return "Shwena is awesome!"
+	      }
         
         virtual int HowManyOptions() const {
-		return 5;
-	}
+		        return 5;
+	      }
 
         virtual void AddOption(GameQuestion* gq) {}
 
@@ -39,5 +39,6 @@ class GameQuestion {
 
         virtual void UpdateUserScore(int) {}
 };
-#endif
 
+
+#endif // __GAMEQUESTION_HPP__
