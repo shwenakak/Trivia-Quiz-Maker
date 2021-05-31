@@ -1,10 +1,10 @@
  > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# \<Project title\>
+# Trivia Quiz Maker
  > Your author list below should include links to all members GitHub (remove existing author).
  
- > Authors: \<[Jeffrey McDaniel](https://github.com/jmcda001)\>
+ > Authors: [Arnav Menon](https://github.com/Arnav-Menon) [Alexus Broussard](https://github.com/alexthelionnnn) [Shwena Kak](https://github.com/shwenakak)
  
  > You will be forming a group of **THREE** students and working on an interesting project. A list of proposed project ideas that have been successful in previous quarters is given in the project specifications link on iLearn. You can select an idea from the list, start thinking about the features you will implement, what design patterns can help you implement them, and why. If you want to propose your own original idea, you will have to contact an instructor to discuss the project and obtain written permission before you submit your project proposal. Your project needs to implement two design patterns.The project work should be divided almost equally among team members and each member is expected to work on at least one design pattern (more than one partner may work on a pattern) and some of its test cases. You can of course help each other, but it needs to be clear who will be responsible for which patterns and for which features.
  
@@ -18,30 +18,27 @@
 > * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group.
 
 ## Project Description
- > Your project description should summarize the project you are proposing. Be sure to include
- > * Why is it important or interesting to you?
- > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
- >   * [toolname](link) - Short description
- > * What will be the input/output of your project?
- > * What are the two design patterns you will be using? For each design pattern you must explain in 4-5 sentences:
- >   * Why you picked this pattern and what feature you will implement with it
- >   * What problem you anticipate encountering when implementing your project that you will solve using the design pattern
- >   * Why the chosen design pattern will lead to a good solution to that problem
- > * This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
+ > The trivia quiz will allow the user to play a trivia game. The user will be able to choose between a genre-specific quiz or a generalized quiz. Based on their selection the quiz will contain multiple-choice, true/false, or fill-in-the-blank questions.
+ > * Games are a fun way to destress and relax, especially in these current times, learning how to relax and take care of yourself is equally as important as staying on top of your stuff.
+ > * We will be using C++, Valgrind, and CMake.
+ > * C++: an object-oriented programming language 
+ > * Valgrind: an instrumentation framework for building dynamic analysis tools
+ > * CMake: a software for build automation, testing, packaging, and installation
+ > * Input: User selection/answers, Reference Text Documents
+ > * Output: Quiz Questions
+ 
+> ### Composite: 
+> We picked this pattern because we felt that a quiz allows us to nicely and cleanly divide the project into separate components. For example, the quiz can be generated about one specific topic or multiple topics; each topic can be its own class, or component, which will have a list of questions specific to it. We will implement a RunGame() function which will properly display and perhaps format the quiz topics and questions onto the screen. A problem we may encounter and solve with this design is sheer number of topics and questions we may have. This will allow the user to call the display function on an object and not have to worry about which function will be called, setting a uniformity in our code and easy accessibility. Using this pattern will make the implementation and storage of these objects or "components" easier. With all our quiz components, Composite Design Pattern will give us flexibility in our class structure.
+
+> ### Strategy: 
+> We chose this design pattern because we anticipate having multiple algorithms to check the validity of the users’ answers. For example, the algorithm to determine the correctness of a T/F question will differ from the algorithm to determine the correctness of the fill-in-the-blank questions. We might not be able to do that with one, clear-cut algorithm. So to be safe, we may need to implement multiple different algorithms, which we can then call whenever necessary. Another problem we anticipate coming upon is the delayed completion of reading in all the files. Implementing specific algorithms can help lower the runtime and ensure the user can take the quiz as soon as possible.
 
  > ## Phase II
- > In addition to completing the "Class Diagram" section below, you will need to 
- > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
- >   * Backlog, TODO, In progress, In testing, Done
- >   * You can change these or add more if you'd like, but we should be able to identify at least these.
- > * There is no requirement for automation in the project board but feel free to explore those options.
- > * Create an "Epic" (note) for each feature and each design pattern and assign them to the appropriate team member. Place these in the `Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Create smaller development tasks as issues and assign them to team members. Place these in the `TODO` column.
- >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
 ## Class Diagram
- > Include a class diagram(s) for each design pattern and a description of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper OMT notation (as discussed in the course slides). You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description). 
+ > ![OMTQuiz](https://user-images.githubusercontent.com/74133408/117524652-14343e00-af73-11eb-9bec-fb4433758101.png)
  
+ > We have a Quiz class which holds a reference to the Questions class, which is an abstract class. The Quiz class has three functions, one to secure the topic of questions the user wants, another to store the type of questions the user wants, and the last function will "run the game". The questions class has three vectors containing questions to each topic: Music, Science, and Sports. This class has a virtual function, CheckAnswer(), which the subclasses TF, MC, and Fill will implement accordingly. The implementation of these functions depends on the question type. For example, evaluating the validity of a T/F question is different from checking the validity of a Fill-in-the-Blank question. That is the strategy pattern at work. The composite pattern is the RunGame() function, which allows the user to interact with the game, allowing them to choose the topic they want, the types of questions they want, etc. Finally, we have multiple sub-classes at the bottom of our diagram that hold the correct answers to the questions. We realize this is an inefficient way to store the answers, and we will come up with a better solution soon. 
+
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
  > * Before the meeting you should perform a sprint plan like you did in Phase II
