@@ -11,11 +11,11 @@ using namespace std;
 class MC : public Type {
         public:
                 MC() : Type() {}
-                virtual void Display(GameQuestion* gq) const {
-                        cout << "\t" << gq->GetQuestion() << endl;
+                virtual void Display(GameQuestion* gq, std::ostream& out) const {
+                        out << "\t" << gq->GetQuestion() << endl;
 			vector<GameQuestion*> options = gq->AllOptions();
                         for (int i = 0; i < options.size(); i++) {
-                                cout << "\t\t" << options.at(i)->GetSingleOption() << endl;
+                                out << "\t\t" << options.at(i)->GetSingleOption() << endl;
                         }
                 }
 };
