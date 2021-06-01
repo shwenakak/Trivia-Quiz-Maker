@@ -2,7 +2,7 @@
 #define __GAME_HPP__
 
 #include "type.hpp"
-//#include "game_question.hpp"
+//#include "GameQuestion.hpp"
 #include "question.hpp"
 #include "option.hpp"
 
@@ -30,7 +30,7 @@ class Game {
 
 		void LoadFillQuestions(string topic) {
 			ifstream qFile; // use this to go thorugh questions file
-			ifstream aFile; // use this to go thorugh questions file
+			fstream aFile; // use this to go thorugh questions file
 			string question;
 			string answer;
 
@@ -52,7 +52,6 @@ class Game {
 				exit(1);
 			}
 
-
 			// count total lines and ppulate vectors with all questions and answers
 			int totalLines = 0;
 			while (getline(qFile, question) && getline(aFile,answer)) {
@@ -69,16 +68,17 @@ class Game {
 				if (find(nums.begin(), nums.end(), randNum) == nums.end())
 					nums.push_back(randNum);
 			}
-		
+
 			srand(time(0));
 			for (int i = 0; i < nums.size(); i++) {
-				questions.push_back(new Question(all_q.at(nums.at(i)), 5));
-		//		printed.push_back(false);
+				GameQuestion* new_q = new Question(all_q.at(nums.at(i)), 5);
+				new_q->AddOption(new Option(all_a.at(nums.at(i)), true));
+				questions.push_back(new_q);
 			}
 			
 			qFile.close();
 			aFile.close();
-			nums.clear();
+			nums.clear(); 
 		}
 		
 		void LoadTFQuestions(string topic) {
@@ -254,7 +254,7 @@ class Game {
 			else if (y == "tf")
 				LoadTFQuestions(t);
 			else if (y == "mc")
-				LoadMCQuestions(t);
+				LoadMCQuestions(t); 
 		}
 	
 		GameQuestion* GetQuestion(int index) { return questions.at(index); }
@@ -262,7 +262,7 @@ class Game {
 		int HowManyQuestions() { return questions.size(); }	
 
 		void CheckUserAnswer(string input, GameQuestion* q) {
-			string correct_answer = q->CorrectAnswer();
+			string correct_answer = q->GetAnswer();
 			// convert user input to all lower case in case they decided to be smart and type with weird casing
 			transform(input.begin(), input.end(), input.begin(), ::tolower);
 			transform(correct_answer.begin(), correct_answer.end(), correct_answer.begin(), ::tolower);
@@ -274,7 +274,7 @@ class Game {
 			}
 			else {
 				// give them a hint
-				//cout << "INCORRECT ANSWER" << endl;
+				cout << "Wrong! THe correct answer is: " << correct_answer << endl;
 				cout << "";
 			}
 		}

@@ -1,42 +1,68 @@
 #ifndef __QUESTION_HPP__
 #define __QUESTION_HPP__
 
-#include "../header/GameQuestion.hpp"
+#include "GameQuestion.hpp"
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-class Question : public GameQuestion 
-{
+class Question : public GameQuestion {
 	private:
 		string q;
-		int num;
+		int p;
 		vector<GameQuestion*> options; 
 
 	public:
-		Question(string quest, int n) : GameQuestion(),q(quest), num(n) {}
-		virtual int GetScore() const (return score);
-		virtual int GetTotalPoints() const return(totalPoints);
-		virtual void AddOption(GameQuestion* opt)
-		{
-			options.push_back(opt);
+		Question(string question, int points) : GameQuestion(), q(question), p(points) {
+			qPoints = points;
+			totalPoints += points;
 		}
-		virtual string GetAnswer() const
+		~Question() {
+			for (int i = 0; i < options.size(); i++)
+				delete options.at(i);
+			options.clear();
+		}
+
+		virtual string GetAnswer() const {
+			for (int i = 0; i < options.size(); i++) {
+				if (options.at(i)->CorrectAnswer())
+					return options.at(i)->GetAnswer();
+			}
+			return "";
+		}
+		virtual bool CorrectAnswer() { return true; }
+
+		virtual string GetQuestion() const { return q; }
+
+		virtual int HowManyOptions() const { return options.size(); }
+
+		virtual void AddOption(GameQuestion* gq) { options.push_back(gq); }
+//		virtual vector<GameQuestion*> GetOptions() { return options
+		virtual vector<GameQuestion*> AllOptions() { return options; }
+		virtual string GetSingleOption() { return "not needed in this class"; }
+		virtual int GetScore() const { return score; }
+		virtual int GetTotalPoints() const { return totalPoints; }
+		virtual void UpdateUserScore(int add) { score += add; }
+		virtual int QPoints() { return qPoints; }
+
+/*		virtual string GetAnswer() const
 		{
-			for(int i = 0; i < option.size(); i++)
+			for(int i = 0; i < options.size(); i++)
 			{
-				if(options.at(i) -> CorrectAnswer())
+				if(options.at(i)->CorrectAnswer())
 				{
-					return options.at(i) -> GetAnswer();
+					return options.at(i)->GetAnswer();
 				}
-			
 				else
 				{
 					return "";
 				}
 			}
-		}	
+		}
+*/
 };
+
 #endif

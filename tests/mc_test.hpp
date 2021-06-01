@@ -16,7 +16,7 @@ TEST(MCTEST, DisplayQ)
 	EXPECT_EQ(out.str(), "\tHow many miles away is the sun?\n");
 }
 
-TEST(FillTest, DisplayQ1) 
+TEST(MCTest, DisplayQ1) 
 {
 	Type* type = new MC();
 	GameQuestion* g = new Question("What's the acronym for the colors of the rainbow?", 10);
@@ -25,7 +25,7 @@ TEST(FillTest, DisplayQ1)
 	EXPECT_EQ(out.str(), "\tWhat's the acronym for the colors of the rainbow?\n");
 }
 
-TEST(FillTest, DisplayQ2) 
+TEST(MCTest, DisplayQ2) 
 {
 	Type* type = new MC();
 	GameQuestion* g = new Question("Britney Spears and Justin Timberlake turned up the 2001 American Music Awards wearing outfits made out of what?", 10);
@@ -34,7 +34,7 @@ TEST(FillTest, DisplayQ2)
 	EXPECT_EQ(out.str(), "\tBritney Spears and Justin Timberlake turned up the 2001 American Music Awards wearing outfits made out of what?\n");
 }
 
-TEST(FillTest, DisplayQ3) 
+TEST(MCTest, DisplayQ3) 
 {
 	Type* type = new MC();
 	GameQuestion* g = new Question("What NBA player scored 100 points on March 2, 1962?", 10);
@@ -43,16 +43,16 @@ TEST(FillTest, DisplayQ3)
 	EXPECT_EQ(out.str(), "\tWhat NBA player scored 100 points on March 2, 1962?\n");
 }
 
-TEST(FillTest, DisplayQ4) 
+TEST(MCTest, DisplayQ4) 
 {
 	Type* type = new MC();
-	GameQuestion* g = new Question("The Weeknd released his album Starboy in what year? ?", 10);
+	GameQuestion* g = new Question("The Weeknd released his album Starboy in what year?", 10);
 	std::stringstream out;
 	type->Display(g, out);
-	EXPECT_EQ(out.str(), "\tThe Weeknd released his album Starboy in what year? \n");
+	EXPECT_EQ(out.str(), "\tThe Weeknd released his album Starboy in what year?\n");
 }
 
-TEST(FillTest, DisplayQ5)
+TEST(MCTest, DisplayQ5)
 {
         Type* type = new MC();
         GameQuestion* g = new Question("What team won the first Super Bowl?", 10);

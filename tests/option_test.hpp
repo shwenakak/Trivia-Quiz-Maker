@@ -6,22 +6,22 @@
 
 TEST(OptionTest, TestCorrectAnswerTrue) {
   Option o("TestOption", true);
-  EXPECT_DOUBLE_EQ(o.CorrectAnswer(), true);
+  EXPECT_EQ(o.CorrectAnswer(), true);
 }
 
 TEST(OptionTest, TestCorrectAnswerFalse) {
   Option o("TestOption", false);
-  EXPECT_DOUBLE_EQ(o.CorrectAnswer(), false);
+  EXPECT_EQ(o.CorrectAnswer(), false);
 }
 
 TEST(OptionTest, TestOptionStringTrue) {
   Option o("TestOption", true);
-  EXPECT_DOUBLE_EQ(o.GetAnswer(), "TestOption");
+  EXPECT_EQ(o.GetAnswer(), "TestOption");
 }
 
 TEST(OptionTest, TestOptionStringFalse) {
   Option o("TestOption", false);
-  EXPECT_DOUBLE_NEQ(o.GetAnswer(), "Wrong");
+  EXPECT_NE(o.GetAnswer(), "Wrong");
 }
 
 #endif
