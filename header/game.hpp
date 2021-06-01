@@ -274,7 +274,6 @@ class Game {
 			}
 			else {
 				// give them a hint
-				cout << "WRONG! CORRECT ANSWER IS: " << correct_answer << endl;
 				cout << "";
 			}
 		}
