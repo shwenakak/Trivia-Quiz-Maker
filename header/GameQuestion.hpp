@@ -13,9 +13,10 @@ class GameQuestion {
 		int qPoints; // how much each question is worth
 		int score = 0; // user score
 	public:
+		GameQuestion() { }
 		virtual ~GameQuestion() = default;
 		virtual string GetAnswer() const = 0;
-		virtual bool CorrectAnswer();
+		virtual bool CorrectAnswer() { }
 
 		virtual string GetQuestion() const { return "garbage. need this for Question class"; }
 		
@@ -23,7 +24,7 @@ class GameQuestion {
 		virtual int HowManyOptions() const { return 11; }
 
 		virtual void AddOption(GameQuestion* gq) { }
-		virtual vector<GameQuestion*> GetOptions() { }
+//		virtual vector<GameQuestion*> GetOptions() { }
 		virtual vector<GameQuestion*> AllOptions() { }
 		virtual string GetSingleOption() { }
 		virtual int GetScore() const { }

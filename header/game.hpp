@@ -29,8 +29,8 @@ class Game {
 		Type* type = nullptr;
 
 		void LoadFillQuestions(string topic) {
-/*			ifstream qFile; // use this to go thorugh questions file
-			ifstream aFile; // use this to go thorugh questions file
+			ifstream qFile; // use this to go thorugh questions file
+			fstream aFile; // use this to go thorugh questions file
 			string question;
 			string answer;
 
@@ -68,16 +68,17 @@ class Game {
 				if (find(nums.begin(), nums.end(), randNum) == nums.end())
 					nums.push_back(randNum);
 			}
-		
+
 			srand(time(0));
 			for (int i = 0; i < nums.size(); i++) {
-				questions.push_back(new Question(all_q.at(nums.at(i)), 5));
-		//		printed.push_back(false);
+				GameQuestion* new_q = new Question(all_q.at(nums.at(i)), 5);
+				new_q->AddOption(new Option(all_a.at(nums.at(i)), true));
+				questions.push_back(new_q);
 			}
 			
 			qFile.close();
 			aFile.close();
-			nums.clear(); */
+			nums.clear(); 
 		}
 		
 		void LoadTFQuestions(string topic) {
@@ -253,7 +254,7 @@ class Game {
 			else if (y == "tf")
 				LoadTFQuestions(t);
 			else if (y == "mc")
-				LoadMCQuestions(t);
+				LoadMCQuestions(t); 
 		}
 	
 		GameQuestion* GetQuestion(int index) { return questions.at(index); }
@@ -273,7 +274,7 @@ class Game {
 			}
 			else {
 				// give them a hint
-				//cout << "INCORRECT ANSWER" << endl;
+				cout << "WRONG! CORRECT ANSWER IS: " << correct_answer << endl;
 				cout << "";
 			}
 		}
