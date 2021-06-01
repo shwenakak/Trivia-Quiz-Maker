@@ -47,8 +47,16 @@
  
  ## Screenshots
  > Screenshots of the input/output after running your application
+ ![image](https://user-images.githubusercontent.com/81598652/120259586-183d3e00-c249-11eb-9b4c-d4a2d9b0fe40.png)
+ ![image](https://user-images.githubusercontent.com/81598652/120259720-4c186380-c249-11eb-9c57-37c4935af7dd.png)
+ ![image](https://user-images.githubusercontent.com/81598652/120259820-7c600200-c249-11eb-858e-ff5b245943ef.png)
+ 
  ## Installation/Usage
  > Instructions on installing and running your application
- ## Testing
+ > No additional installation is required to operate or play the game. 
+ > To initialize the game run cmake3 . then make the file. Once the file is made it will generate a game executable. Run the game executable using ./game. Then enjoy!
+
+## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+ > Each individual subject (Science, Sports, Music) was tested with googletest, developer unit tests, and valgrind. Each test was completed and passed with no memory leaks or errors.
  
