@@ -1,9 +1,5 @@
- > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
- > Prompt text is any lines beginning with "\>"
- > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# Trivia Quiz Maker
- > Your author list below should include links to all members GitHub (remove existing author).
- 
+ # Trivia Quiz Maker
+
  > Authors: [Arnav Menon](https://github.com/Arnav-Menon) [Alexus Broussard](https://github.com/alexthelionnnn) [Shwena Kak](https://github.com/shwenakak)
  
  > You will be forming a group of **THREE** students and working on an interesting project. A list of proposed project ideas that have been successful in previous quarters is given in the project specifications link on iLearn. You can select an idea from the list, start thinking about the features you will implement, what design patterns can help you implement them, and why. If you want to propose your own original idea, you will have to contact an instructor to discuss the project and obtain written permission before you submit your project proposal. Your project needs to implement two design patterns.The project work should be divided almost equally among team members and each member is expected to work on at least one design pattern (more than one partner may work on a pattern) and some of its test cases. You can of course help each other, but it needs to be clear who will be responsible for which patterns and for which features.
@@ -54,11 +50,12 @@
 
  
  ## Installation/Usage
- > Instructions on installing and running your application
  > No additional installation is required to operate or play the game. 
+ > 
  > To initialize the game run cmake3 . then make the file. Once the file is made it will generate a game executable. Run the game executable using ./game. Then enjoy!
 
 ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
- > Each individual subject (Science, Sports, Music) was tested with googletest, developer unit tests, and valgrind. Each test was completed and passed with no memory leaks or errors.
+ > Each individual subject (Science, Sports, Music) was tested with googletest, developer unit tests, and valgrind. 
+ > 
+ > Each test was completed and passed with no memory leaks or errors.
  
