@@ -15,15 +15,15 @@ TEST(TFTest, DisplayTest1) {
     GameQuestion* g = new Question("The lead singer of The Neighbourhood is Cole Sprouse.", 5);
     stringstream s;
     type->Display(g, s);
-    EXPECT_EQ(s.str(), "\tThe lead singer of The Neighbourhood is Cole Sprouse.\n");
+    EXPECT_EQ(s.str(), "\tThe lead singer of The Neighbourhood is Cole Sprouse.\n\t\t True\n\t\t False\n");
 }
 
 TEST(TFTest, DisplayTest2) {
     Type* type = new TF();
-    GameQuestion* g = new Question("Dolly Parton is Miley Cyrus’s God Mother.", 456);
+    GameQuestion* g = new Question("Dolly Parton is Miley Cyrus God Mother.", 456);
     stringstream s;
     type->Display(g, s);
-    EXPECT_EQ(s.str(), "\tDolly Parton is Miley Cyrus’s God Mother.\n");
+    EXPECT_EQ(s.str(), "\tDolly Parton is Miley Cyrus God Mother.\n\t\t True\n\t\t False\n");
 }
 
 TEST(TFTest, DisplayTest3) {
@@ -31,7 +31,7 @@ TEST(TFTest, DisplayTest3) {
     GameQuestion* g = new Question("Electrons are larger than molecules.", 2345);
     stringstream s;
     type->Display(g, s);
-    EXPECT_EQ(s.str(), "\tElectrons are larger than molecules.\n");
+    EXPECT_EQ(s.str(), "\tElectrons are larger than molecules.\n\t\t True\n\t\t False\n");
 }
 
 TEST(TFTest, DisplayTest4) {
@@ -39,6 +39,6 @@ TEST(TFTest, DisplayTest4) {
     GameQuestion* g = new Question("The San Francisco 49ers have won 5 NFL championships?", 7675643);
     stringstream s;
     type->Display(g, s);
-    EXPECT_EQ(s.str(), "\tThe San Francisco 49ers have won 5 NFL championships?\n");
+    EXPECT_EQ(s.str(), "\tThe San Francisco 49ers have won 5 NFL championships?\n\t\t True\n\t\t False\n");
 }
 #endif

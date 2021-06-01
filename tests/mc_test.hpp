@@ -46,10 +46,10 @@ TEST(MCTest, DisplayQ3)
 TEST(MCTest, DisplayQ4) 
 {
 	Type* type = new MC();
-	GameQuestion* g = new Question("The Weeknd released his album Starboy in what year? ?", 10);
+	GameQuestion* g = new Question("The Weeknd released his album Starboy in what year?", 10);
 	std::stringstream out;
 	type->Display(g, out);
-	EXPECT_EQ(out.str(), "\tThe Weeknd released his album Starboy in what year? \n");
+	EXPECT_EQ(out.str(), "\tThe Weeknd released his album Starboy in what year?\n");
 }
 
 TEST(MCTest, DisplayQ5)
